@@ -26,6 +26,10 @@ set relativenumber
 set expandtab
 set shiftwidth=4
 set tabstop=4
+set foldmethod=indent
+set foldlevel=1
+set foldclose=all
+set nofoldenable
 "----------------- RECOMMENDED NVIM-CMP SETTINGS ------------------------
 " Set completeopt to have a better completion experience
 set completeopt=menuone,noinsert,noselect
@@ -45,7 +49,6 @@ cmp.setup({
         ['<Tab>'] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
         ['<S-Tab>'] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
         ['<CR>'] = cmp.mapping.confirm({select = true }),
-        ['<Tab><Tab>'] = cmp.mapping.confirm({select = true }),
         },
     sources = {
         -- For ultisnips user.
@@ -57,10 +60,11 @@ cmp.setup({
 
 capabilities = require'cmp_nvim_lsp'.update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
-require'lspconfig'.pyright.setup{capabilities}
 require'lspconfig'.hls.setup{capabilities}
+require'lspconfig'.pyright.setup{capabilities}
 require'lspconfig'.clangd.setup{capabilities}
 require'lspconfig'.tsserver.setup{capabilities}
+require'lspconfig'.rls.setup{capabilities}
 require'lspconfig'.cmake.setup{capabilities}
 EOF
 "------------------------------------------------------------------------
