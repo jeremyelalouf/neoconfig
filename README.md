@@ -3,8 +3,7 @@ My minimalist neovim init file
 
 ### Install
 1. [Vim plug](https://github.com/junegunn/vim-plug)
-2. Clone into `~/.config/nvim/`
-3. Check that init.vim is at `~/.config/nvim/init.vim`
+2. Clone into `git clone git@github.com:ArthurS1/nvim-init.git ~/.config/nvim/`
 4. Go into vim and type `:PlugInstall`
 
 ### Features (no particular order) 
