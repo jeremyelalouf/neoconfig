@@ -30,6 +30,7 @@ set foldmethod=indent
 set foldlevel=1
 set foldclose=all
 set nofoldenable
+autocmd BufWritePre * :%s/\s\+$//e
 "----------------- RECOMMENDED NVIM-CMP SETTINGS ------------------------
 " Set completeopt to have a better completion experience
 set completeopt=menuone,noinsert,noselect
