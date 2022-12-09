@@ -29,7 +29,7 @@ local extended_tabs_filetypes = {'c', 'cpp'}
 local default_tabs = 2
 local extended_tabs = 4
 
-vim.api.nvim_set_option('dir', '~/.config/nvim/tmp')
+vim.api.nvim_set_option('dir', '$HOME/.config/nvim/tmp')
 vim.api.nvim_win_set_option(0, 'number', true)
 vim.api.nvim_win_set_option(0, 'relativenumber', true)
 vim.api.nvim_buf_set_option(0, 'expandtab', true)
