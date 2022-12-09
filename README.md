@@ -6,8 +6,7 @@ My minimalist neovim init file
 2. Clone into `git clone git@github.com:ArthurS1/nvim-init.git ~/.config/nvim/`
 4. Go into vim and type `:PlugInstall`
 
-### Features (no particular order) 
-- bats highlight (for cli tests)
+### Features (no particular order)
 - autocompletion (with lsp)
 - real-time errors (with lsp)
 - fzf for file switch
