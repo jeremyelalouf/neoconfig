@@ -2,6 +2,7 @@
 -- Arthur Soulié 2022
 -- This configuration is hosted at https://github.com/ArthurS1/nvim-init
 --]]
+local nvim_version = vim.version()
 vim.cmd('echo \"Configuration by Arthur Soulié 2022\"')
 
 -- Plugins
@@ -33,19 +34,29 @@ local home_dir = '/home/arthur'
 vim.api.nvim_set_option('dir', home_dir .. '/.config/nvim/tmp')
 vim.api.nvim_win_set_option(0, 'number', true)
 vim.api.nvim_win_set_option(0, 'relativenumber', true)
-vim.api.nvim_buf_set_option(0, 'expandtab', true)
-vim.api.nvim_buf_set_option(0, 'shiftwidth', default_tabs)
-vim.api.nvim_buf_set_option(0, 'tabstop', default_tabs)
 vim.api.nvim_set_option('foldlevel', 1)
 vim.api.nvim_set_option('foldclose', 'all')
 vim.api.nvim_set_option('foldenable', false)
+vim.api.nvim_set_option('ignorecase', true)
 
-vim.api.nvim_set_keymap('i', '²', '<Esc>', {})
-vim.api.nvim_set_keymap('t', '²', '<C-\\><C-n>', {})
-vim.api.nvim_set_keymap('', ';', ':Files<CR>', {})
+vim.api.nvim_set_keymap('i', '²', '<esc>', {})
+vim.api.nvim_set_keymap('t', '²', '<c-\\><c-n>', {})
+vim.api.nvim_set_keymap('', ';', ':files<cr>', {})
 vim.api.nvim_set_keymap('i', '(', '()<left>', {})
 vim.api.nvim_set_keymap('i', '[', '[]<left>', {})
 vim.api.nvim_set_keymap('i', '{', '{}<left>', {})
+
+-- [[
+-- The default options when a buffer is entered.
+-- ]]
+vim.api.nvim_create_autocmd({'BufEnter'}, {
+  callback = function ()
+    vim.api.nvim_buf_set_option(0, 'expandtab', true)
+    vim.api.nvim_buf_set_option(0, 'shiftwidth', default_tabs)
+    vim.api.nvim_buf_set_option(0, 'tabstop', default_tabs)
+    return false
+  end
+})
 
 --[[
 -- Changes the tab length depending on filetype according to the variables on
@@ -54,6 +65,7 @@ vim.api.nvim_set_keymap('i', '{', '{}<left>', {})
 vim.api.nvim_create_autocmd({'FileType'}, {
   pattern = extended_tabs_filetypes,
   callback = function ()
+    vim.api.nvim_buf_set_option(0, 'expandtab', true)
     vim.api.nvim_buf_set_option(0, 'shiftwidth', extended_tabs)
     vim.api.nvim_buf_set_option(0, 'tabstop', extended_tabs)
     return false
