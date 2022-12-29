@@ -41,7 +41,7 @@ vim.api.nvim_set_option('ignorecase', true)
 
 vim.api.nvim_set_keymap('i', '²', '<esc>', {})
 vim.api.nvim_set_keymap('t', '²', '<c-\\><c-n>', {})
-vim.api.nvim_set_keymap('', ';', ':files<cr>', {})
+vim.api.nvim_set_keymap('', ';', ':Files<cr>', {})
 vim.api.nvim_set_keymap('i', '(', '()<left>', {})
 vim.api.nvim_set_keymap('i', '[', '[]<left>', {})
 vim.api.nvim_set_keymap('i', '{', '{}<left>', {})
