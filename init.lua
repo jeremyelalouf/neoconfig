@@ -38,10 +38,11 @@ vim.api.nvim_set_option('foldlevel', 1)
 vim.api.nvim_set_option('foldclose', 'all')
 vim.api.nvim_set_option('foldenable', false)
 vim.api.nvim_set_option('ignorecase', true)
+vim.api.nvim_set_option('shiftwidth', default_tabs)
 
 vim.api.nvim_set_keymap('i', '²', '<esc>', {})
 vim.api.nvim_set_keymap('t', '²', '<c-\\><c-n>', {})
-vim.api.nvim_set_keymap('', ';', ':Files<cr>', {})
+vim.api.nvim_set_keymap('', ';', ':GitFiles<cr>', {})
 vim.api.nvim_set_keymap('i', '(', '()<left>', {})
 vim.api.nvim_set_keymap('i', '[', '[]<left>', {})
 vim.api.nvim_set_keymap('i', '{', '{}<left>', {})
@@ -49,7 +50,8 @@ vim.api.nvim_set_keymap('i', '{', '{}<left>', {})
 -- [[
 -- The default options when a buffer is entered.
 -- ]]
-vim.api.nvim_create_autocmd({'BufEnter'}, {
+vim.api.nvim_create_autocmd({'FileType'}, {
+  pattern = '*',
   callback = function ()
     vim.api.nvim_buf_set_option(0, 'expandtab', true)
     vim.api.nvim_buf_set_option(0, 'shiftwidth', default_tabs)
