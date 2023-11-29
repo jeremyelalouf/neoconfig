@@ -13,6 +13,7 @@ Plug('nvim-telescope/telescope-fzy-native.nvim')
 Plug('dhananjaylatkar/cscope_maps.nvim')
 
 Plug('tpope/vim-fugitive')
+Plug('preservim/nerdcommenter')
 
 Plug('neovim/nvim-lspconfig')
 

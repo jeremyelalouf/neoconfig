@@ -39,15 +39,22 @@ vim.api.nvim_win_set_option(0, 'number', true)
 vim.api.nvim_set_option('foldlevel', 1)
 
 vim.api.nvim_set_option('cursorline', true)
+
 vim.api.nvim_command('highlight clear SignColumn')
 vim.api.nvim_command('highlight clear LineNr')
+
+-- Status line
+
+vim.api.nvim_set_option('laststatus', 2)
+vim.api.nvim_set_option('statusline', '"%<%f\\')
+vim.api.nvim_set_option('statusline', vim.o.statusline .. '%w%h%m%r')
 
 vim.api.nvim_set_option('whichwrap', 'b,s,h,l,<,>,[,]')
 vim.api.nvim_set_option('virtualedit', 'onemore')
 
 -- Clipboard
 
-vim.api.nvim_set_option('clipboard', 'unnamedplus')
+vim.api.nvim_set_option('clipboard', 'unnamed,unnamedplus')
 
 vim.api.nvim_set_option('foldclose', 'all')
 vim.api.nvim_set_option('foldenable', false)
@@ -62,9 +69,21 @@ vim.api.nvim_set_keymap('i', '(', '()<left>', {})
 vim.api.nvim_set_keymap('i', '[', '[]<left>', {})
 vim.api.nvim_set_keymap('i', '{', '{}<left>', {})
 
+-- [[
+-- For faster saving and quitting
+-- ]]
 vim.api.nvim_set_keymap('n', 'ww', ':w<CR>', {})
 vim.api.nvim_set_keymap('n', 'qq', ':q<CR>', {})
 vim.api.nvim_set_keymap('n', 'qf', ':q!<CR>', {})
+
+-- [[
+-- Remap the arrow keys to move between windows
+-- ]]
+vim.api.nvim_set_keymap('n', '<C-J>', '<C-W><C-J>', {})
+vim.api.nvim_set_keymap('n', '<C-K>', '<C-W><C-K>', {})
+vim.api.nvim_set_keymap('n', '<C-L>', '<C-W><C-L>', {})
+vim.api.nvim_set_keymap('n', '<C-H>', '<C-W><C-H>', {})
+
 
 -- [[
 -- Copilot remap
