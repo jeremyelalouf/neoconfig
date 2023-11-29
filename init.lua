@@ -1,9 +1,9 @@
 --[[
--- Arthur Soulié 2023
--- This configuration is hosted at https://github.com/ArthurS1/nvim-init
+-- Jeremy Elalouf 2023
+-- This configuration is hosted at TODO
 --]]
 local nvim_version = vim.version()
-vim.cmd('echo \"Configuration by Arthur Soulié 2023\"')
+vim.cmd('echo \"Configuration by Jeremy Elalouf 2023\"')
 
 -- Leader key
 -- [[
@@ -13,25 +13,18 @@ vim.cmd('echo \"Configuration by Arthur Soulié 2023\"')
 -- ]]
 vim.g.mapleader = ','
 
--- Plugins
---[[
--- From https://dev.to/vonheikemen/neovim-using-vim-plug-in-lua-3oom for vim
--- plug usage in lua.
---]]
+local pluginstall = require('pluginstall')
 
-local Plug = vim.fn['plug#']
+-- Colorscheme
 
-vim.call('plug#begin', '~/.config/nvim/plugins')
-Plug('junegunn/fzf',{['do'] = vim.fn['fzf#install']})
-Plug('junegunn/fzf.vim')
-Plug('neovim/nvim-lspconfig')
-Plug('hrsh7th/nvim-cmp')
-Plug('hrsh7th/cmp-nvim-lsp')
-Plug('hrsh7th/cmp-buffer')
-Plug('hrsh7th/cmp-vsnip')
-Plug('hrsh7th/vim-vsnip')
-Plug('github/copilot.vim')
-vim.call('plug#end')
+vim.api.nvim_set_option('background', 'dark')
+vim.api.nvim_command('let g:solarized_termcolors=256')
+vim.api.nvim_command('let g:solarized_termtrans=1')
+vim.api.nvim_command('let g:solarized_contrast="normal"')
+vim.api.nvim_command('let g:solarized_visibility="normal"')
+vim.api.nvim_command('color solarized')
+vim.api.nvim_command('highlight! Function ctermfg=33 guifg=#40ffff')
+vim.api.nvim_command('highlight clear Identifier')
 
 -- General Options
 
@@ -39,12 +32,23 @@ local extended_tabs_filetypes = {'c', 'cpp'}
 local no_spaced_tabs_filetypes = {'make'}
 local default_tabs = 2
 local extended_tabs = 4
-local home_dir = '/home/arthur'
+local home_dir = '/Users/jerem'
 
 vim.api.nvim_set_option('dir', home_dir .. '/.config/nvim/tmp')
 vim.api.nvim_win_set_option(0, 'number', true)
-vim.api.nvim_win_set_option(0, 'relativenumber', true)
 vim.api.nvim_set_option('foldlevel', 1)
+
+vim.api.nvim_set_option('cursorline', true)
+vim.api.nvim_command('highlight clear SignColumn')
+vim.api.nvim_command('highlight clear LineNr')
+
+vim.api.nvim_set_option('whichwrap', 'b,s,h,l,<,>,[,]')
+vim.api.nvim_set_option('virtualedit', 'onemore')
+
+-- Clipboard
+
+vim.api.nvim_set_option('clipboard', 'unnamedplus')
+
 vim.api.nvim_set_option('foldclose', 'all')
 vim.api.nvim_set_option('foldenable', false)
 vim.api.nvim_set_option('ignorecase', true)
@@ -57,6 +61,10 @@ vim.api.nvim_set_keymap('', ';', ':GitFiles<cr>', {})
 vim.api.nvim_set_keymap('i', '(', '()<left>', {})
 vim.api.nvim_set_keymap('i', '[', '[]<left>', {})
 vim.api.nvim_set_keymap('i', '{', '{}<left>', {})
+
+vim.api.nvim_set_keymap('n', 'ww', ':w<CR>', {})
+vim.api.nvim_set_keymap('n', 'qq', ':q<CR>', {})
+vim.api.nvim_set_keymap('n', 'qf', ':q!<CR>', {})
 
 -- [[
 -- Copilot remap
@@ -162,3 +170,4 @@ cmp.setup({
 cmp_nvim_lsp.default_capabilities()
 language_servers.setup(cmp_nvim_lsp)
 
+local plugconf = require('plugconf')
