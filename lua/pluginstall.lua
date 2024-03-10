@@ -4,31 +4,48 @@
 -- plug usage in lua.
 --]]
 
-local Plug = vim.fn['plug#']
+return require('packer').startup(function()
+    -- Packer can manage itself
+    use 'wbthomason/packer.nvim'
 
-vim.call('plug#begin', '~/.config/nvim/plugins')
+    -- Theme
+    -- use { "catppuccin/nvim", as = "catppuccin" }
+    use 'altercation/vim-colors-solarized'
+    use 'luochen1990/rainbow'
+    use {
+      'nvim-lualine/lualine.nvim',
+      requires = { 'kyazdani42/nvim-web-devicons', opt = true }
+    }
 
-Plug('nvim-telescope/telescope.nvim')
-Plug('nvim-telescope/telescope-fzy-native.nvim')
-Plug('dhananjaylatkar/cscope_maps.nvim')
 
-Plug('tpope/vim-fugitive')
-Plug('preservim/nerdcommenter')
+    -- LSP
+    use 'neovim/nvim-lspconfig'
 
-Plug('neovim/nvim-lspconfig')
+    -- Completion and snippets
+    use { 'ray-x/lsp_signature.nvim', commit = "1d96fac72eb6d74abd5b4d7883a01f58aeb4f87e" }
+    use 'hrsh7th/nvim-cmp'
+    use 'hrsh7th/cmp-nvim-lsp'
+    use 'hrsh7th/cmp-buffer'
+    use 'hrsh7th/cmp-vsnip'
+    use 'hrsh7th/vim-vsnip'
 
-Plug('hrsh7th/nvim-cmp')
-Plug('hrsh7th/cmp-nvim-lsp')
-Plug('hrsh7th/cmp-buffer')
-Plug('hrsh7th/cmp-vsnip')
-Plug('hrsh7th/vim-vsnip')
+    -- File search and navigation
+    use {
+      'nvim-telescope/telescope.nvim', tag = '0.1.5',
+      requires = { {'nvim-lua/plenary.nvim'} }
+    }
+    use {
+      'nvim-tree/nvim-tree.lua',
+      requires = {
+        'nvim-tree/nvim-web-devicons', -- optional
+      },
+    }
 
-Plug('github/copilot.vim')
+    -- Others
+    use 'tpope/vim-fugitive'
+    use { 'nvim-treesitter/nvim-treesitter', tag = 'v0.8.1' }
 
-Plug 'MunifTanjim/nui.nvim'
-Plug('nvim-lua/plenary.nvim')
-Plug('nvim-tree/nvim-web-devicons')
-Plug('nvim-neo-tree/neo-tree.nvim')
-
-Plug('altercation/vim-colors-solarized')
-vim.call('plug#end')
+    -- Writing and editing
+    -- use {'numToStr/Comment.nvim'}
+    -- use 'preservim/nerdcommenter'
+end)

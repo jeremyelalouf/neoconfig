@@ -15,24 +15,33 @@ vim.g.mapleader = ','
 
 local pluginstall = require('pluginstall')
 
--- Colorscheme
+local home_dir = '/Users/jerem'
 
-vim.api.nvim_set_option('background', 'dark')
-vim.api.nvim_command('let g:solarized_termcolors=256')
-vim.api.nvim_command('let g:solarized_termtrans=1')
-vim.api.nvim_command('let g:solarized_contrast="normal"')
-vim.api.nvim_command('let g:solarized_visibility="normal"')
-vim.api.nvim_command('color solarized')
-vim.api.nvim_command('highlight! Function ctermfg=33 guifg=#40ffff')
-vim.api.nvim_command('highlight clear Identifier')
+--vim.api.nvim_create_autocmd('BufWritePre', {
+  --pattern = { '*.tsx', '*.ts', '*.jsx', '*.js' },
+  --command = 'silent! EslintFixAll',
+  --group = vim.api.nvim_create_augroup('MyAutocmdsJavaScripFormatting', {}),
+--})
+
+vim.opt.undofile = true
+vim.opt.undodir = home_dir .. '/.config/nvim/tmp/undo'
+vim.opt.undolevels = 1000
+vim.opt.undoreload = 10000
+
+vim.api.nvim_set_keymap('v', '<', '<gv', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('v', '>', '>gv', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', 'dd', 'dd', { noremap = true, silent = true })
 
 -- General Options
 
 local extended_tabs_filetypes = {'c', 'cpp'}
 local no_spaced_tabs_filetypes = {'make'}
-local default_tabs = 2
+local default_tabs = 4
 local extended_tabs = 4
 local home_dir = '/Users/jerem'
+
+vim.api.nvim_set_option('whichwrap', 'h,l')
+vim.api.nvim_set_option('ve', 'onemore')
 
 vim.api.nvim_set_option('dir', home_dir .. '/.config/nvim/tmp')
 vim.api.nvim_win_set_option(0, 'number', true)
@@ -43,15 +52,6 @@ vim.api.nvim_set_option('cursorline', true)
 vim.api.nvim_command('highlight clear SignColumn')
 vim.api.nvim_command('highlight clear LineNr')
 
--- Status line
-
-vim.api.nvim_set_option('laststatus', 2)
-vim.api.nvim_set_option('statusline', '"%<%f\\')
-vim.api.nvim_set_option('statusline', vim.o.statusline .. '%w%h%m%r')
-
-vim.api.nvim_set_option('whichwrap', 'b,s,h,l,<,>,[,]')
-vim.api.nvim_set_option('virtualedit', 'onemore')
-
 -- Clipboard
 
 vim.api.nvim_set_option('clipboard', 'unnamed,unnamedplus')
@@ -60,6 +60,7 @@ vim.api.nvim_set_option('foldclose', 'all')
 vim.api.nvim_set_option('foldenable', false)
 vim.api.nvim_set_option('ignorecase', true)
 vim.api.nvim_set_option('shiftwidth', default_tabs)
+vim.api.nvim_set_option('tabstop', default_tabs)
 vim.o.exrc = true
 
 vim.api.nvim_set_keymap('i', '²', '<esc>', {})
@@ -154,15 +155,10 @@ vim.api.nvim_create_autocmd({'LspAttach'}, {
     vim.keymap.set('n', '<Leader><Space>', vim.lsp.buf.hover)
     vim.keymap.set('n', '<Leader>r', vim.lsp.buf.rename)
     vim.keymap.set('n', '<Leader>e', vim.diagnostic.goto_next)
+    vim.keymap.set('n', '<Leader>sf', vim.lsp.buf.code_action)
+    vim.keymap.set('n', '<Leader>sr', vim.lsp.buf.rename)
   end
 })
-
--- Completion options
---[[
--- Got from https://github.com/neovim/nvim-lspconfig
---]]
-
-vim.api.nvim_set_option('completeopt', 'menuone,noinsert,noselect')
 
 local cmp = require'cmp'
 local language_servers = require'languageservers'
