@@ -9,17 +9,20 @@ return require('packer').startup(function()
     use 'wbthomason/packer.nvim'
 
     -- Theme
-    -- use { "catppuccin/nvim", as = "catppuccin" }
-    use 'altercation/vim-colors-solarized'
+    -- use {'morhetz/gruvbox'}
+    -- use {'maxmx03/solarized.nvim'}
+    -- use {'shaunsingh/solarized.nvim'}
+    use {'altercation/vim-colors-solarized'}
     use 'luochen1990/rainbow'
+    use 'kyazdani42/nvim-web-devicons'
     use {
       'nvim-lualine/lualine.nvim',
       requires = { 'kyazdani42/nvim-web-devicons', opt = true }
     }
 
-
     -- LSP
     use 'neovim/nvim-lspconfig'
+    use 'mfussenegger/nvim-dap' -- Debugging
 
     -- Completion and snippets
     use { 'ray-x/lsp_signature.nvim', commit = "1d96fac72eb6d74abd5b4d7883a01f58aeb4f87e" }
@@ -37,7 +40,7 @@ return require('packer').startup(function()
     use {
       'nvim-tree/nvim-tree.lua',
       requires = {
-        'nvim-tree/nvim-web-devicons', -- optional
+        'nvim-tree/nvim-web-devicons',
       },
     }
 
@@ -46,6 +49,6 @@ return require('packer').startup(function()
     use { 'nvim-treesitter/nvim-treesitter', tag = 'v0.8.1' }
 
     -- Writing and editing
-    -- use {'numToStr/Comment.nvim'}
+    use {'numToStr/Comment.nvim'}
     -- use 'preservim/nerdcommenter'
 end)

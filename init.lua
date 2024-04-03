@@ -17,11 +17,11 @@ local pluginstall = require('pluginstall')
 
 local home_dir = '/Users/jerem'
 
---vim.api.nvim_create_autocmd('BufWritePre', {
-  --pattern = { '*.tsx', '*.ts', '*.jsx', '*.js' },
-  --command = 'silent! EslintFixAll',
-  --group = vim.api.nvim_create_augroup('MyAutocmdsJavaScripFormatting', {}),
---})
+vim.api.nvim_create_autocmd('BufWritePre', {
+  pattern = { '*.tsx', '*.ts', '*.jsx', '*.js' },
+  command = 'silent! EslintFixAll',
+  group = vim.api.nvim_create_augroup('MyAutocmdsJavaScripFormatting', {}),
+})
 
 vim.opt.undofile = true
 vim.opt.undodir = home_dir .. '/.config/nvim/tmp/undo'
@@ -30,9 +30,15 @@ vim.opt.undoreload = 10000
 
 vim.api.nvim_set_keymap('v', '<', '<gv', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('v', '>', '>gv', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', 'dd', 'dd', { noremap = true, silent = true })
 
 -- General Options
+
+vim.cmd([[
+    augroup RestoreCursorShapeOnExit
+        autocmd!
+        autocmd VimLeave * set guicursor=a:ver1
+    augroup END
+]])
 
 local extended_tabs_filetypes = {'c', 'cpp'}
 local no_spaced_tabs_filetypes = {'make'}
